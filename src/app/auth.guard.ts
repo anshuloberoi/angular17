@@ -8,10 +8,8 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 
 if(tocken){
-console.log('hello');
 return true;
 }else{
-console.log('nohello');
 return false
 }
 

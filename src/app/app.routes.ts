@@ -20,9 +20,7 @@ children:[
   {
     path:'home',
     loadChildren:()=>PageModule
-  }
-
-]
+  }]
 },
 
   {
