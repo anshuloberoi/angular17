@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  
-  login:FormGroup 
+
+  login:FormGroup
   submitted:any=false
 
   constructor(private bs:BehaviourService,private appserice:AppService,private fb:FormBuilder,private route:Router){
@@ -40,5 +40,5 @@ this.route.navigate(['/home'])
 }
 
 
- 
+
 }
