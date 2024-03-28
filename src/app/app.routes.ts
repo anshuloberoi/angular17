@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+
 import { Routes } from '@angular/router';
-import { AuthModule } from './auth/auth.module';
+
 import { LayoutComponent } from './Theam/layout/layout.component';
-import { authGuard } from './auth.guard';
-import { HeaderComponent } from './Theam/header/header.component';
-import { PageModule } from './page/page.module';
+
+import { authGuard } from './Shared/auth.guard';
+import { LoginComponent } from './Auth/login/login.component';
+import { HomeComponent } from './Pages/home/home.component';
+
 
 export const routes: Routes = [
   {
@@ -17,16 +19,12 @@ path:'',
 component:LayoutComponent,
 canActivate:[authGuard],
 children:[
-  {
-    path:'home',
-    loadChildren:()=>PageModule
-  }]
+  {path:'home',component:HomeComponent },
+ 
+                                     ]
 },
 
-  {
-  path:'auth',
-  loadChildren:()=>AuthModule
-},
+{path:'auth',component:LoginComponent},
 
 
 

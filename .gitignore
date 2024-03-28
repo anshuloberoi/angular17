@@ -6,11 +6,12 @@
 /out-tsc
 /bazel-out
 
+
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
-
+deleted/
 # IDEs and editors
 .idea/
 .project
