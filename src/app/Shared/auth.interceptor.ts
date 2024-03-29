@@ -6,8 +6,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const _bs: BehaviourService = inject(BehaviourService);
   let currentUserData = _bs.getLocalUser()
   let headers = {};
-  if (currentUserData) {
-    
+  if (currentUserData) {  
     const token = currentUserData.access_token ? currentUserData.access_token : '';
     if (token) {
       headers = {
@@ -15,10 +14,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
       };
-  
-     
     }
-   
   }
   const authReq =  req.clone({
     setHeaders: headers
