@@ -7,6 +7,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './Shared/error.interceptor';
 import { authInterceptor } from './Shared/auth.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,13 @@ export const appConfig: ApplicationConfig = {
    provideClientHydration(),
  
    provideAnimations(),
- 
-   provideHttpClient(withInterceptors([ authInterceptor,errorInterceptor])),]
+   
+   provideHttpClient(withInterceptors([ authInterceptor,errorInterceptor])),
+  
+   provideToastr({
+    timeOut: 4000,
+   
+    preventDuplicates: true,
+  }),
+  ]
 };

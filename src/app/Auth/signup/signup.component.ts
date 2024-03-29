@@ -10,17 +10,23 @@ import {
 } from '@angular/forms';
 import Validation from '../../Moadals/validation';
 import { CommonModule } from '@angular/common';
+import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,NgxIntlTelInputModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
   form: FormGroup
+  SearchCountryField = SearchCountryField;
   submitted = false;
-
+  CountryISO = CountryISO;
+  preferredCountries: CountryISO[] = [
+    CountryISO.UnitedStates,
+    CountryISO.UnitedKingdom
+  ];
   constructor(private formBuilder: FormBuilder) {
 
     this.form = this.formBuilder.group(
@@ -35,6 +41,7 @@ export class SignupComponent {
           ],
         ],
         email: ['', [Validators.required, Validators.email]],
+        phone: ['', [Validators.required]],
         password: [
           '',
           [

@@ -1,47 +1,15 @@
 @if(data){
-@for (item of data; track item.slug) {
+@for (item of data; track item._id) {
 
 
-
-  <section>
-    <div class="row">
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="card">
-          <div class="cover item-a">
-
-            <h1>{{item.title}}</h1>
-            <span class="price">$79</span>
-            <div class="card-back">
-              <a href="#">Add to cart</a>
-              <a href="#">View detail</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="card">
-          <div class="cover item-b">
-            <h1>Tropical<br>Leaf</h1>
-            <span class="price">$35</span>
-            <div class="card-back">
-              <a href="#">Add to cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <div class="card">
-          <div class="cover item-c">
-            <h1>Marijuana<br>Chill</h1>
-            <span class="price">$155</span>
-            <div class="card-back">
-              <a href="#">Add to cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="card" style="width: 18rem;">
+    <img src="{{baseurl}}images/users/{{item.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
-  </section>
+  </div>
   }
 
 }@else{

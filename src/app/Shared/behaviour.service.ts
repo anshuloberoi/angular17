@@ -21,25 +21,26 @@ signOut(): void {
   this.setUserData(null)
 }
 
-setUserData(data: any) {
-  let value = {
-      ...this.getLocalUser(),
-      ...data
-  }
-  if (data) {
-      if (isPlatformBrowser(this.platformId)) {
-          let user = JSON.stringify(value)
-          localStorage.setItem('credentials', user)
-      }
-      this.userData.next(value);
-  } else {
+
+setUserData(data:any) {
+    let value={
+        ...this.getLocalUser(),
+        ...data
+    }
+    if(data){
+       let user = JSON.stringify(value)
+       if (isPlatformBrowser(this.platformId)) {
+       localStorage.setItem('credentials', user)
+       }
+       this.userData.next(value);
+    }else{
       if (isPlatformBrowser(this.platformId)) {
           localStorage.removeItem('credentials');
-      }
-      this.userData.next('');
-  }
+                  }
+       
+        this.userData.next('');
+    }
 }
-
 
 getLocalUser() {
   let data: any;
