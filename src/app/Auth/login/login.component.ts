@@ -6,6 +6,7 @@ import { AppService } from '../../Shared/app.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,14 +15,15 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
+  options:any
   login:FormGroup
   submitted:any=false
    toastr:ToastrService=inject(ToastrService)
-  constructor(private bs:BehaviourService,private appserice:AppService,private fb:FormBuilder,private route:Router){
+  constructor(private bs:BehaviourService,private appserice:AppService,private fb:FormBuilder,private route:Router ){
   this.login = this.fb.group({
     email: ['', [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9._%. +-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,4}.$")]],
     password: ['', [Validators.required, Validators.minLength(8)]],
+    address:['']
     // acceptTerms: ['']
   });
 
@@ -68,6 +70,94 @@ this.route.navigate(['/home'])
   console.log(JSON.stringify(this.login.value, null, 2));
 }
 
+address:any
+onChange(address: any) {
+  console.log("hello");
+  
+  let lat = address.geometry.location.lat();
+  let lng = address.geometry.location.lng();
 
 
+  let aArray: any = address.address_components;
+  console.log(address, "address");
+  const getCountry = () => {
+    let value = "";
+
+    aArray.map((item: any) => {
+      if (item.types[0] == "country") {
+        value = item.long_name;
+
+      }
+    });
+ 
+    return value;
+  };
+
+  const getCity = () => {
+    let value = "";
+    aArray.map((item: any) => {
+      if (item.types[0] == "locality") {
+        value = item.long_name;
+      }
+    });
+    return value;
+  };
+
+  const getLocality = () => {
+    let value = "";
+    aArray.map((item: any) => {
+      if (item.types[0] == "locality") {
+        value = item.long_name;
+      }
+    });
+    return value;
+  };
+
+  const getState = () => {
+    let value = "";
+    aArray.map((item: any) => {
+      if (item.types[0] == "administrative_area_level_1") {
+        value = item.long_name;
+      }
+    });
+    return value;
+  };
+
+  // const getPostalCode = () => {
+  //   let value = '';
+  //   aArray.map((item: any) => {
+  //     if (item.types[0] == "postal_code") {
+  //       value = item.long_name
+  //     }
+  //   })
+  //   return value;
+  // }
+
+  const getPostalCode = () => {
+    let value = "";
+    aArray.map((item: any) => {
+      if (item.types[0] == "postal_code") {
+        value = item.long_name;
+      }
+    });
+    return value;
+
+  };
+
+  this.address = {
+    lat,
+    lng,
+    address: address.formatted_address,
+    country: getCountry(),
+    state: getState(),
+    city: getCity(),
+    pincode: getPostalCode(),
+    locality: getLocality(),
+  };
+  // if (this.address.pincode) {
+    let local = this.address.address.split(',')
+    local = local[0]
+
+  // }
+}
 }

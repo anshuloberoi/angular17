@@ -24,5 +24,6 @@ export const appConfig: ApplicationConfig = {
    
     preventDuplicates: true,
   }),
+ 
   ]
 };
