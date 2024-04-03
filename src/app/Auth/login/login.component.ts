@@ -5,12 +5,15 @@ import { BehaviourService } from '../../Shared/behaviour.service';
 import { AppService } from '../../Shared/app.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { NgxGpAutocompleteModule } from '@angular-magic/ngx-gp-autocomplete';
+
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,NgxGpAutocompleteModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -23,7 +26,7 @@ export class LoginComponent {
   this.login = this.fb.group({
     email: ['', [Validators.required, Validators.email, Validators.pattern("^[a-zA-Z0-9._%. +-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,4}.$")]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    address:['']
+    // address:['']
     // acceptTerms: ['']
   });
 
@@ -71,7 +74,7 @@ this.route.navigate(['/home'])
 }
 
 address:any
-onChange(address: any) {
+handleAddressChange(address: any) {
   console.log("hello");
   
   let lat = address.geometry.location.lat();
